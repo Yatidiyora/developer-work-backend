@@ -1,0 +1,75 @@
+{
+  "name": "developer-work-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "npm run serve",
+    "build": "npm run build-ts && npm run lint",
+    "serve": "node dist/server.js",
+    "watch-node": "nodemon dist/server.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "lint": "eslint . --ext .ts",
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "prettier:check": "prettier --check \"src/**/*.ts\"",
+    "lint-staged": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier:check && npm run lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run prettier",
+      "npm run lint"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "developer-work-backend": "file:",
+    "dotenv": "^16.4.7",
+    "errorhandler": "^1.5.1",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "helmet": "^8.0.0",
+    "husky": "^9.1.7",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "lint-staged": "^15.4.3",
+    "log4js": "^6.9.1",
+    "lusca": "^1.7.0",
+    "md5": "^2.3.0",
+    "mongoose": "^8.9.3",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.1",
+    "passport-saml": "^3.2.4",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "prettier": "^3.5.3",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/errorhandler": "^1.5.3",
+    "@types/express": "^5.0.0",
+    "@types/express-session": "^1.18.1",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/lusca": "^1.7.5",
+    "@types/md5": "^2.3.5",
+    "@types/morgan": "^1.9.9",
+    "@types/passport": "^1.0.17",
+    "@types/passport-google-oauth20": "^2.0.16",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/uuid": "^10.0.0",
+    "typescript": "^5.7.3"
+  }
+}

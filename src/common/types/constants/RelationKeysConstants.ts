@@ -1,4 +1,4 @@
 export const customerOrdersJoinKey = {
-    targetKey: "id",
-    foreignKey: 'orderCategoryId',
-}
+  targetKey: 'id',
+  foreignKey: 'orderCategoryId',
+};

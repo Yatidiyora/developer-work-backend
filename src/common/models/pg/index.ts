@@ -27,7 +27,7 @@ const initPgDB = () => {
       ssl: {
         require: true,
         rejectUnauthorized: false, // disable strict SSL check (Neon requires this)
-      }
+      },
     },
     pool: {
       max: 5,

@@ -1,4 +1,4 @@
-import { DATE_CATEGORY_TYPE } from "../../../common/types/enums/CommonEnums";
+import { DATE_CATEGORY_TYPE } from '../../../common/types/enums/CommonEnums';
 
 export interface SalesRevenueDateCategory {
   categoryType: DATE_CATEGORY_TYPE;

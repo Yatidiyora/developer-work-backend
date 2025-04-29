@@ -1,9 +1,9 @@
-import { col, Op, ProjectionAlias, Sequelize } from 'sequelize';
-import { CustomerOrdersDetailsModel, OrderCategoryModel, sequelize } from '../../../common/models/pg';
-import { customerOrdersJoinKey } from '../../../common/types/constants/RelationKeysConstants';
-import { getCustomLogger } from '../../../common/utils/Logger';
-import { DATE_CATEGORY_TYPE, SORT } from '../../../common/types/enums/CommonEnums';
 import { SalesRevenueRecord } from 'interfaces/SalesRevenue';
+import { col, Op, ProjectionAlias, Sequelize } from 'sequelize';
+import { CustomerOrdersDetailsModel, OrderCategoryModel } from '../../../common/models/pg';
+import { customerOrdersJoinKey } from '../../../common/types/constants/RelationKeysConstants';
+import { DATE_CATEGORY_TYPE, SORT } from '../../../common/types/enums/CommonEnums';
+import { getCustomLogger } from '../../../common/utils/Logger';
 
 const logger = getCustomLogger('Customer-orders::repository::CustomerOrdersRepository');
 
@@ -70,7 +70,7 @@ export const getSalesOrderRevenue = async (props: any): Promise<SalesRevenueReco
     return (await CustomerOrdersDetailsModel.findAll({
       attributes: [
         ...Object.entries(groups).map(([key, field]: [key: string, field: string]) => {
-          return [col(field),key] as ProjectionAlias;
+          return [col(field), key] as ProjectionAlias;
         }),
         // [col('OrderCategoryModel.order_category_type'), 'orderCategoryType'],
         // [col('OrderCategoryModel.sub_category_type'), 'subCategoryType'],
@@ -91,7 +91,7 @@ export const getSalesOrderRevenue = async (props: any): Promise<SalesRevenueReco
             } else if (rangeType === DATE_CATEGORY_TYPE.DATE) {
               return { order_date: dateRangeObject[rangeType] };
             } else if (rangeType === DATE_CATEGORY_TYPE.RANGE) {
-              return { order_date: {[Op.between]: dateRangeObject[rangeType]}}
+              return { order_date: { [Op.between]: dateRangeObject[rangeType] } };
             }
           }),
         ],

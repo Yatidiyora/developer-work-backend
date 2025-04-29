@@ -8,10 +8,10 @@ import { UserDetailsModel } from '../../common/models/pg';
 export const validateUser = async (req: Request) => {
   const { id } = req.body;
   const userSource: DataConditions = fetchExistingDataFromTableObject;
-    userSource.modelName = DB_MODELS.UserDetailsModel;
-    userSource.requiredWhereFields[0].conditionValue = {id};
-    userSource.requiredColumns = { exclude: ['password'] };
-    const { dataObject: user} = await commonDbExecution(userSource) as GetDataResponse;
+  userSource.modelName = DB_MODELS.UserDetailsModel;
+  userSource.requiredWhereFields[0].conditionValue = { id };
+  userSource.requiredColumns = { exclude: ['password'] };
+  const { dataObject: user } = (await commonDbExecution(userSource)) as GetDataResponse;
   if (!user) {
     return STATUS_CODE.NOT_FOUND;
   }

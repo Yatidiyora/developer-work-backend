@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
-import { COMMON_COLUMNS, DB_MODELS, SORT, STATUS_CODE, STATUS_MESSAGE } from '../../../common/types/enums/CommonEnums';
+import { COMMON_COLUMNS, SORT, STATUS_CODE, STATUS_MESSAGE } from '../../../common/types/enums/CommonEnums';
+import { SalesRevenuePayload } from '../../../common/types/interfaces/SalesRevenue';
 import { RequestQuery } from '../../../common/types/interfaces/UserInterface';
 import { getCustomLogger } from '../../../common/utils/Logger';
 import { fetchCustomerOrders, getSalesOrderRevenue } from '../repository/CustomerOrdersRepository';
-import { SalesRevenuePayload } from '../../../common/types/interfaces/SalesRevenue';
-import { fetchDataFromTableObject } from '../../../common/types/constants/DbObjectConstants';
 
 const logger = getCustomLogger('Customer-orders::service::CustomerOrdersService');
 
@@ -41,12 +40,10 @@ export const fetchSalesRevenue = async (req: Request, res: Response) => {
 
     const groups = {
       orderCategoryType: 'OrderCategoryModel.order_category_type',
-      ...(orderCategoryType && {subCategoryType: 'OrderCategoryModel.sub_category_type'}),
-      ...(subCategoryType && { productCategoryType: 'CustomerOrdersDetailsModel.order_name'})
+      ...(orderCategoryType && { subCategoryType: 'OrderCategoryModel.sub_category_type' }),
+      ...(subCategoryType && { productCategoryType: 'CustomerOrdersDetailsModel.order_name' }),
     };
     const revenueRecords = await getSalesOrderRevenue({ searchObject, dateRangeObject, groups });
-
-    const revenueObject = {};
 
     logger.info('RevenueRecords: ', revenueRecords);
     res.status(STATUS_CODE.SUCCESS).json({ result: revenueRecords, status: STATUS_MESSAGE.SUCCESS });

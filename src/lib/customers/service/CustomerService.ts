@@ -3,19 +3,13 @@ import { Op } from 'sequelize';
 import { commonDbExecution } from '../../../common/service/DbService';
 import {
   fetchExistingDataFromTableObject,
-    paginationSourceObject
+  paginationSourceObject,
 } from '../../../common/types/constants/DbObjectConstants';
+import { COMMON_COLUMNS, DB_MODELS, SORT, STATUS_CODE, STATUS_MESSAGE } from '../../../common/types/enums/CommonEnums';
 import {
-    COMMON_COLUMNS,
-    DB_MODELS,
-    SORT,
-    STATUS_CODE,
-    STATUS_MESSAGE
-} from '../../../common/types/enums/CommonEnums';
-import {
-    DataConditions,
-    GetDataResponse,
-    GetPaginationDataResponse
+  DataConditions,
+  GetDataResponse,
+  GetPaginationDataResponse,
 } from '../../../common/types/interfaces/CommonDbTypes';
 import { RequestQuery } from '../../../common/types/interfaces/UserInterface';
 import { getCustomLogger } from '../../../common/utils/Logger';
@@ -56,15 +50,13 @@ export const fetchAllCustomers = async (req: Request, res: Response) => {
 };
 
 export const fetchCustomerDetails = async (req: Request, res: Response) => {
-  const {id} = req.params
+  const { id } = req.params;
   try {
     const customerSource: DataConditions = fetchExistingDataFromTableObject;
     customerSource.modelName = DB_MODELS.CustomerDetailsModel;
-    customerSource.requiredWhereFields[0].conditionValue = {id};
+    customerSource.requiredWhereFields[0].conditionValue = { id };
     customerSource.raw = true;
-    const {
-      dataObject,
-    } = (await commonDbExecution(customerSource)) as GetDataResponse;
+    const { dataObject } = (await commonDbExecution(customerSource)) as GetDataResponse;
     res.status(STATUS_CODE.SUCCESS).json(dataObject);
   } catch (error) {
     logger.error('Error while fetching users ', error);

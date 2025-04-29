@@ -70,7 +70,7 @@ export enum MODULE {
   USER = 'Manage Users',
   ROLE = 'Manage Roles',
   CUSTOMER = 'Manage Customers',
-  SALES_REVENUE = 'Sales Revenue'
+  SALES_REVENUE = 'Sales Revenue',
 }
 
 export enum ACTION {
@@ -128,7 +128,7 @@ export enum SORT {
 
 export enum JOIN_TYPE {
   INNER_JOIN = 'INNER_JOIN',
-  LEFT_JOIN = 'LEFT_JOIN'
+  LEFT_JOIN = 'LEFT_JOIN',
 }
 
 export enum EVENT_SOURCE {
@@ -200,12 +200,12 @@ export enum SEQUELIZE_CONDITION_TYPES {
 
 export enum SIGNUP_TYPE {
   SIGN_UP = 'signUp',
-  LOG_IN = 'logIn'
+  LOG_IN = 'logIn',
 }
 
 export enum DATE_CATEGORY_TYPE {
   YEAR = 'year',
   MONTH = 'month',
   DATE = 'date',
-  RANGE = 'range'
+  RANGE = 'range',
 }

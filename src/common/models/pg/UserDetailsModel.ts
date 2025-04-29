@@ -46,9 +46,20 @@ export const initUserDetailsModel = (sequelize: Sequelize) => {
         type: DataTypes.DATE,
         allowNull: true,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
+      timestamps: true,
       freezeTableName: true,
       underscored: true,
       tableName: TABLES.USER_DETAILS,

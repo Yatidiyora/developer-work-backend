@@ -6,6 +6,7 @@ export class CustomerOrdersDetailsModel extends Model {
   public customerId: string;
   public orderCategoryId: string;
   public orderName: string;
+  public orderDate: string;
   public orderSerialNumber: string;
   public orderDeliveryAddress: string;
   public orderDeliveryStatus: string;
@@ -28,6 +29,9 @@ export const initCustomerOrdersDetailsModel = (sequelize: Sequelize) => {
       orderCategoryId: {
         type: DataTypes.UUID,
       },
+      orderDate: {
+        type: DataTypes.STRING,
+      },
       orderName: {
         type: DataTypes.STRING,
       },
@@ -43,10 +47,21 @@ export const initCustomerOrdersDetailsModel = (sequelize: Sequelize) => {
       orderPrice: {
         type: DataTypes.INTEGER,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
       freezeTableName: true,
+      timestamps: true,
       underscored: true,
       tableName: TABLES.CUSTOMER_ORDERS_DETAILS,
     },

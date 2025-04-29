@@ -24,6 +24,10 @@ const initPgDB = () => {
     dialect: 'postgres',
     dialectOptions: {
       maxPreparedStatements: 300,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false, // disable strict SSL check (Neon requires this)
+      }
     },
     pool: {
       max: 5,

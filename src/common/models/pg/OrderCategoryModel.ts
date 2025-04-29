@@ -23,10 +23,21 @@ export const initOrderCategoryModel = (sequelize: Sequelize) => {
       subCategoryType: {
         type: DataTypes.STRING,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
       freezeTableName: true,
+      timestamps: true,
       underscored: true,
       tableName: TABLES.ORDER_CATEGORY_DETAILS,
     },

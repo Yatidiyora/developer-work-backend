@@ -46,6 +46,16 @@ export const initRolePermissionDetailsModel = (sequelize: Sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 1,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       indexes: [
@@ -55,6 +65,7 @@ export const initRolePermissionDetailsModel = (sequelize: Sequelize) => {
         },
       ],
       sequelize,
+      timestamps: true,
       freezeTableName: true,
       underscored: true,
       tableName: TABLES.ROLE_PERMISSION_DETAILS,

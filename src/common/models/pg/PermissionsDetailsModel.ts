@@ -20,10 +20,21 @@ export const initPermissionDetailsModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
       freezeTableName: true,
+      timestamps: true,
       underscored: true,
       tableName: TABLES.PERMISSION_DETAILS,
     },

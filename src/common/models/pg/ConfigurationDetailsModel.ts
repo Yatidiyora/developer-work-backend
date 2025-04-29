@@ -21,11 +21,22 @@ export const initConfigurationDetailsModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
       freezeTableName: true,
       underscored: true,
+      timestamps: true,
       tableName: TABLES.CONFIGURATION,
     },
   ).sync();

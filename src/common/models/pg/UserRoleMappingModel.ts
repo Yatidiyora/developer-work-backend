@@ -25,10 +25,21 @@ export const initUserRoleMappingModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
       freezeTableName: true,
+      timestamps: true,
       underscored: true,
       tableName: TABLES.USER_ROLE_MAPPING,
     },

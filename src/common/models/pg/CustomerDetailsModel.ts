@@ -47,9 +47,20 @@ export const initCustomerDetailsModel = (sequelize: Sequelize) => {
       lastActiveDate: {
         type: DataTypes.DATE,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
+      timestamps: true,
       freezeTableName: true,
       underscored: true,
       tableName: TABLES.CUSTOMER_DETAILS,

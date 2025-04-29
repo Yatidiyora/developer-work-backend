@@ -25,9 +25,20 @@ export const initRoleDetailsModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
+      timestamps: true,
       freezeTableName: true,
       underscored: true,
       tableName: TABLES.ROLE_DETAILS,
